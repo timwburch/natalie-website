@@ -1,0 +1,39 @@
+---
+layout: default
+prism: true
+---
+
+<div class="container mt-6 px-6">
+  <div class="pb-5 mb-5 border-b border-gray-100">
+    <h1 class="font-bold text-5xl">{{title}}</h1>    
+  </div>
+
+  <div>
+    <image src="{{thumbnail}}" alt="{{title}}" />
+  </div>
+  
+  <article class="prose prose-invert lg:prose-xl my-4 mx-auto">{{ content | safe }}</article>
+
+  <section>
+    
+    <div class=" border-y-2 border-gray-500 p-4 text-center">
+      <a class="px-6 py-4 text-white opacity-50 hover:opacity-100 transition" href="/">Return home.</a>
+    </div>
+    <ul class="pt-6 lg:pt-4 list-reset lg:flex justify-end flex-1 items-center text-base leading-6 text-gray-500">
+      <li class="justify-self-start mr-auto">
+        <p class="">
+          <time>
+            {{ date | readableDate }}
+          </time>
+        </p>
+      </li>
+      {% if tags %}
+      {% for tag in tags | exclude('post') %}
+      <li class="nav__item mr-3">
+        <strong>{{ tag }}</strong>
+      </li>
+      {% endfor %}
+      {% endif %}
+    </ul>
+  </section>
+</div>

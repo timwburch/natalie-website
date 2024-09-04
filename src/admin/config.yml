@@ -1,0 +1,133 @@
+backend:
+  # Use netlify identity as backend
+  name: git-gateway
+  branch: master
+  ### enable below lines for github integration ###
+  # name: github
+  # repo: surjithctly/neat-starter
+media_folder: "src/static/img"
+public_folder: "/static/img"
+
+# media_library:
+#   name: cloudinary
+#   config:
+#     cloud_name: eleventytest
+#     api_key: 229558939792972
+
+# Please run "npx netlify-cms-proxy-server" for local backend
+local_backend: true
+# publish_mode: editorial_workflow
+collections:
+  - label: "Portfolio"
+    name: "portfolio"
+    folder: "src/posts"
+    create: true
+    editor:
+      preview: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Featured Image"
+        name: "thumbnail"
+        widget: "image"
+        choose_url: true
+        media_library:
+          config:
+            multiple: true
+      - widget: select
+        label: "tags"
+        name: "tags"
+        multiple: true
+        create: true
+        options: ["Home", "Branding", "Web Design", "Photography", "Print", "Social Media"]
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Display Link", name: "hasLink", widget: "boolean", required: false}
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+  
+  - label: "Settings"
+    name: "settings"
+    editor:
+      preview: false
+    files:
+      - label: "Settings"
+        name: "settings"
+        file: "src/_data/settings.yaml"
+        fields:
+          - { label: Name, name: name, widget: string }
+          - { label: Author, name: author, widget: string }
+          - { label: URL, name: url, widget: string }
+          - label: "Profile Pic"
+            name: profilePic
+            widget: image
+            required: false
+
+      - label: "Page Content"
+        name: "pagecontent"
+        file: "src/_data/pagecontent.yaml"
+        fields:
+          - label: "Home Content"
+            name: "homeContent"
+            widget: "object"
+            collapsed: true 
+            fields:
+              - { label: Top Content, name: topContent, widget: "markdown"}
+              - { label: Bottom Content, name: bottomContent, widget: "markdown" }
+          - label: "Branding Content"
+            name: "Branding"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: Top Content, name: topContent, widget: "markdown", required: false }
+              - { label: Bottom Content, name: bottomContent, widget: "markdown", required: false }
+          - label: "Web Design Content"
+            name: "Web Design"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: Top Content, name: topContent, widget: "markdown", required: false }
+              - { label: Bottom Content, name: bottomContent, widget: "markdown", required: false }
+          - label: "Photography Content"
+            name: "Photography"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: Top Content, name: topContent, widget: "markdown", required: false }
+              - { label: Bottom Content, name: bottomContent, widget: "markdown", required: false }
+          - label: "Print Content"
+            name: "Print"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: Top Content, name: topContent, widget: "markdown", required: false }
+              - { label: Bottom Content, name: bottomContent, widget: "markdown", required: false }
+          - label: "Social Media Content"
+            name: "Social Media"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: Top Content, name: topContent, widget: "markdown", required: false }
+              - { label: Bottom Content, name: bottomContent, widget: "markdown", required: false }
+
+      - label: "Client Links"
+        name: "clients"
+        file: "src/_data/clients.yaml"
+        fields:
+          - label: Client Links
+            name: items
+            widget: list
+            collapsed: false
+            fields:
+              - { label: Title, name: text, widget: string }
+              - { label: URL, name: url, widget: string }
+
+      - label: "Contact Links"
+        name: "contact"
+        file: "src/_data/contacts.yaml"
+        fields:
+          - label: Contact Link
+            name: items
+            widget: list
+            collapsed: false
+            fields:
+              - { label: Title, name: text, widget: string }
+              - { label: URL, name: url, widget: string }
+      
